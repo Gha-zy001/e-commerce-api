@@ -40,4 +40,5 @@ class RegisterRequest extends FormRequest
       'password.min' => 'The password must be at least 8 characters long.',
     ];
   }
+
 }

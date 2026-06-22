@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/user', function (Request $request) {
-    return $request->user();
+  return $request->user();
 })->middleware('auth:sanctum');
 
 
@@ -18,4 +18,6 @@ Route::group([
   Route::post('register', 'register')->name('register');
   Route::post('login', 'login')->name('login');
   Route::post('logout', 'logout')->name('logout');
+  Route::post('verify-otp', 'verifyOtp')->name('verify-otp');
+  Route::post('send-otp', 'sendOtp')->name('send-otp');
 });
