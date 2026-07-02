@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\CustomerRegistered;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Spatie\Permission\Models\Role;
 
 class AssignCustomerRole
 {
@@ -26,6 +27,7 @@ class AssignCustomerRole
 
   public function assignCustomerRole($user)
   {
-    $user->assignRole('customer');
+    $role = Role::findByName('customer', 'api');
+    $user->assignRole($role);
   }
 }

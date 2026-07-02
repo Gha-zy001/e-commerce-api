@@ -3,21 +3,24 @@
 use App\Http\Controllers\Api\v1\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\v1\Auth\RegisterController;
+use App\Http\Controllers\Api\v1\Auth\LoginController;
+use App\Http\Controllers\Api\v1\Auth\OtpController;
 
 Route::get('/user', function (Request $request) {
   return $request->user();
 })->middleware('auth:sanctum');
 
+Route::prefix('v1')->group(function () {
+  Route::post('register', [RegisterController::class, 'register']);
+  Route::post('login', [LoginController::class, 'login']);
+  Route::post('verify-otp', [OtpController::class, 'verifyOtp']);
 
-Route::group([
-  'prefix' => 'v1',
-  'controller' => AuthController::class,
-  'as' => 'auth.',
-  'middleware' => 'api',
-], function () {
-  Route::post('register', 'register')->name('register');
-  Route::post('login', 'login')->name('login');
-  Route::post('logout', 'logout')->name('logout');
-  Route::post('verify-otp', 'verifyOtp')->name('verify-otp');
-  Route::post('send-otp', 'sendOtp')->name('send-otp');
+  Route::group([
+    'controller' => AuthController::class,
+    'middleware' => 'auth:sanctum',
+  ], function () {
+    Route::post('logout', 'logout');
+    Route::post('send-otp', 'sendOtp');
+  });
 });

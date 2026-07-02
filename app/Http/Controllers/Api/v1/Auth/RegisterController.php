@@ -22,31 +22,7 @@ class RegisterController extends Controller
 
   public function register(RegisterRequest $request)
   {
-    $this->authService->register($request->validated());
+    return $this->authService->register($request->validated());
   }
-
-
-
-
-  public function verifyOtp(Request $request, VerifyOtpAction $verifyOtpAction)
-  {
-    $request->validate([
-      'email' => 'required|email|exists:users,email',
-      'otp' => 'required|numeric'
-    ]);
-
-    $isValid = $verifyOtpAction->execute($request->email, $request->otp);
-
-    if (!$isValid) {
-      return response()->json([
-        'message' => 'The OTP is invalid or has expired.'
-      ], 400);
-    }
-
-    return response()->json([
-      'message' => 'OTP verified successfully.'
-    ]);
-  }
-
 
 }
