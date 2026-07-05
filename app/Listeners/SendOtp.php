@@ -8,7 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use App\Actions\Auth\SendOtpAction;
 use App\Models\User;
 
-class SendOtp
+class SendOtp implements ShouldQueue
 {
   /**
    * Create the event listener.
@@ -22,18 +22,11 @@ class SendOtp
   /**
    * Handle the event.
    */
-  public function handle(CustomerRegistered $event): void
-  {
-    $this->sendOtpAction->execute($event->user);
-  }
-  // public function sendOtp(Request $request, SendOtpAction $sendOtpAction)
-  // {
-  //   $request->validate(['email' => 'required|email|exists:users,email']);
+    public function handle(CustomerRegistered $event): void
+    {
+        if ($event->user) {
+            $this->sendOtpAction->execute($event->user);
+        }
+    }
 
-  //   $user = User::where('email', $request->email)->first();
-  //   $sendOtpAction->execute($user);
-  //   return response()->json([
-  //     'message' => 'OTP sent successfully to your email.'
-  //   ]);
-  // }
 }

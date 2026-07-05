@@ -7,9 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+use App\Traits\Translatable;
+
 class Product extends Model
 {
-  use HasFactory;
+  use HasFactory, Translatable;
+
+  protected $translatable = [
+    'name',
+    'description',
+    'slug',
+  ];
+
   protected $fillable = [
     'category_id',
     'name',
