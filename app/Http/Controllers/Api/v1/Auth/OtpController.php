@@ -2,24 +2,23 @@
 
 namespace App\Http\Controllers\Api\v1\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Actions\Auth\VerifyOtpAction;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\v1\Auth\VerifyOtpRequest;
-use App\Support\ApiResponse;
+use Devgh\ApiErrorHandler\Facades\ApiResponse;
 
 class OtpController extends Controller
 {
+    public function __invoke(VerifyOtpRequest $request, VerifyOtpAction $verifyOtpAction)
+    {
 
-  public function verifyOtp(VerifyOtpRequest $request, VerifyOtpAction $verifyOtpAction)
-  {
-    $isValid = $verifyOtpAction->execute($request->email, $request->otp);
-    if (!$isValid) {
-      return ApiResponse::error('The OTP is invalid or has expired.', [], 400);
+        $type = $request->input('type', 'email_verification');
+
+        $isValid = $verifyOtpAction->execute($request->email, $request->otp, $type);
+        if (! $isValid) {
+            return ApiResponse::error([], 'The OTP is invalid or has expired.', 400);
+        }
+
+        return ApiResponse::success(ucfirst(str_replace('_', ' ', $type)).' verified successfully.');
     }
-    return ApiResponse::success([], 'OTP verified successfully.');
-
-  }
-
-
 }

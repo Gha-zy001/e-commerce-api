@@ -11,7 +11,7 @@ class CustomerObserver
      */
     public function created(User $user): void
     {
-        $user->customerProfile()->create(['user_id' => $user->id]);
+        $user->customerProfile()->create();
     }
 
     /**
