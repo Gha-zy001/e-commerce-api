@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1\Auth;
+namespace App\Http\Controllers\Api\v1\Auth\User;
 
-use App\Actions\Auth\SendOtpAction;
+use App\Actions\Auth\User\SendOtpAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\v1\Auth\ForgetPasswordRequest;
 use App\Models\User;

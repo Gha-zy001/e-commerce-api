@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\Api\v1\Auth\ForgetPasswordController;
-use App\Http\Controllers\Api\v1\Auth\LoginController;
-use App\Http\Controllers\Api\v1\Auth\LogoutController;
-use App\Http\Controllers\Api\v1\Auth\OtpController;
-use App\Http\Controllers\Api\v1\Auth\RegisterController;
-use App\Http\Controllers\Api\v1\Auth\ResetPasswordController;
+use App\Http\Controllers\Api\v1\Auth\User\ForgetPasswordController;
+use App\Http\Controllers\Api\v1\Auth\User\LoginController;
+use App\Http\Controllers\Api\v1\Auth\User\LogoutController;
+use App\Http\Controllers\Api\v1\Auth\User\OtpController;
+use App\Http\Controllers\Api\v1\Auth\User\RegisterController;
+use App\Http\Controllers\Api\v1\Auth\User\ResetPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

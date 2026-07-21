@@ -1,20 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1\Auth;
+namespace App\Actions\Auth\User;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\v1\Auth\ResetPasswordRequest;
 use App\Models\Auth\Otp;
 use App\Models\User;
 use Devgh\ApiErrorHandler\Facades\ApiResponse;
 use Illuminate\Support\Facades\Hash;
 
-class ResetPasswordController extends Controller
+class ResetPasswordAction
 {
-    public function __invoke(ResetPasswordRequest $request)
+    public function execute(User $user, string $password)
     {
-        $user = User::where('email', $request->email)->first();
-
         $verified = Otp::query()
             ->where('user_id', $user->id)
             ->byType('password_reset')
@@ -28,7 +24,7 @@ class ResetPasswordController extends Controller
         }
 
         $user->update([
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($password),
         ]);
 
         return ApiResponse::success('Password reset successfully.');

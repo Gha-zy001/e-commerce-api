@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1\Auth;
+namespace App\Http\Controllers\Api\v1\Auth\User;
 
 use App\Http\Controllers\Controller;
 use Devgh\ApiErrorHandler\Facades\ApiResponse;

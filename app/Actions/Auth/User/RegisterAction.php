@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\Auth;
+namespace App\Actions\Auth\User;
 
 use App\Events\UserRegister;
 use App\Http\Resources\Api\UserResource;

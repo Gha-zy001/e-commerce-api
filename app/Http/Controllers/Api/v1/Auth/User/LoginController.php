@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1\Auth;
+namespace App\Http\Controllers\Api\v1\Auth\User;
 
-use App\Actions\Auth\LoginAction;
+use App\Actions\Auth\User\LoginAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\v1\Auth\LoginRequest;
 use Illuminate\Http\JsonResponse;
